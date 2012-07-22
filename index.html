@@ -65,16 +65,18 @@
         hashChanged();
       });
       function hashChanged() {
-        var hash = window.location.hash.slice(1);
-        if (hash == 'das') {
+        if (window.location.hash == '#das') {
           var width = $(window).width();
           var height = $(window).height();
 
           $('#video').html('<object width="' + width + '" height="' + height + '"><param name="movie" value="http://www.youtube.com/v/zuDtACzKGRs&autoplay=1&hd=1"></param><embed src="http://www.youtube.com/v/zuDtACzKGRs&autoplay=1&hd=1" type="application/x-shockwave-flash" width="' + width + '" height="' + height + '"></embed></object>');
         }
-        else if ($('#video object').length > 0) {
+        else if ($('#video').children().length > 0) {
           $('#video').delay(2000).queue(function() {
-            $('#video').html('');
+            if (window.location.hash != '#das') {
+              $('#video').empty();
+            }
+            $('#video').clearQueue();
           });
         }
       }
