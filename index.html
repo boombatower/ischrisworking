@@ -60,7 +60,11 @@
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript">
-      $(window).bind('hashchange', function () {
+      $(document).ready(function() {
+        $(window).bind('hashchange', hashChanged);
+        hashChanged();
+      });
+      function hashChanged() {
         var hash = window.location.hash.slice(1);
         if (hash == 'das') {
           var width = $(window).width();
@@ -68,12 +72,12 @@
 
           $('#video').html('<object width="' + width + '" height="' + height + '"><param name="movie" value="http://www.youtube.com/v/zuDtACzKGRs&autoplay=1&hd=1"></param><embed src="http://www.youtube.com/v/zuDtACzKGRs&autoplay=1&hd=1" type="application/x-shockwave-flash" width="' + width + '" height="' + height + '"></embed></object>');
         }
-        else {
+        else if ($('#video object').length > 0) {
           $('#video').delay(2000).queue(function() {
             $('#video').html('');
           });
         }
-      });
+      }
     </script>
   </head>
   <body id="das">
