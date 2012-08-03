@@ -76,6 +76,8 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
+        workCheck();
+
         $(window).bind('hashchange', hashChanged);
         hashChanged();
 
@@ -83,6 +85,21 @@
           window.location.hash = 'konami';
         });
       });
+
+      function workCheck() {
+        var date = new Date();
+        var time = date.getTime();
+        var offset = date.getTimezoneOffset() * 60000;
+        var utc = time + offset;
+
+        var utcDate = new Date(utc);
+        var hours = utcDate.getHours();
+
+        // utc 13:00 22:00
+        if (hours > 13 && hours < 22) {
+          $('#answer div').text('lol yap');
+        }
+      }
 
       function hashChanged() {
         if (window.location.hash == '#das') {
