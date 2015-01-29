@@ -104,10 +104,10 @@
 
       function hashChanged() {
         if (window.location.hash == '#das') {
-          setVideo('http://www.youtube.com/v/zuDtACzKGRs&autoplay=1&hd=1');
+          setVideo('zuDtACzKGRs');
         }
         else if (window.location.hash == '#konami') {
-          setVideo('http://www.youtube.com/v/9bZkp7q19f0?autoplay=1');
+          setVideo('9bZkp7q19f0');
         }
         else if ($('#video').children().length > 0) {
           $('#video').delay(2000).queue(function() {
@@ -120,9 +120,10 @@
       }
 
       function setVideo(video) {
+        video = 'https://www.youtube.com/embed/' + video + '?rel=0&controls=0&showinfo=0&iv_load_policy=3&autoplay=1&hd=1&loop=1';
         var width = $(window).width();
         var height = $(window).height();
-        $('#video').html('<object width="' + width + '" height="' + height + '"><param name="movie" value="' + video + '"></param><embed src="' + video + '" type="application/x-shockwave-flash" width="' + width + '" height="' + height + '"></embed></object>');
+        $('#video').html('<iframe width="' + width + '" height="' + height + '" src="' + video + '" frameborder="0" allowfullscreen></iframe>');
       }
 
       (function($) {
